@@ -136,8 +136,14 @@ extension RestaurantListViewController: UICollectionViewDataSource {
         cell.nameLabel.text = rests[collectionView.tag].shops[indexPath.row].name
         
         cell.imageView.image = nil
+        cell.imageView.isHidden = false
         if let url = URL(string: rests[collectionView.tag].shops[indexPath.row].shop_image1) {
-            Nuke.loadImage(with: url, into: cell.imageView)
+            Nuke.loadImage(with: url, into: cell.imageView) { _, error in
+                if let error = error {
+                    print(error)
+                    cell.imageView.isHidden = true
+                }
+            }
         }
         return cell
     }

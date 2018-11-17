@@ -16,6 +16,12 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
             nameLabel.font = .systemFont(ofSize: UIFont.smallSystemFontSize)
         }
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        imageView.isHidden = false
+    }
 }
 
 extension RestaurantCollectionViewCell: CollectionViewNibRegistrable {}
