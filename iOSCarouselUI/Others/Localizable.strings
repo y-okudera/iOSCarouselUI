@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  iOSCarouselUI
+
+  Created by YukiOkudera on 2018/11/17.
+  Copyright © 2018 Yuki Okudera. All rights reserved.
+*/
+
+"error" = "エラー";
+"restaurants_info_read_failure" = "レストラン情報の取得に失敗しました。";
