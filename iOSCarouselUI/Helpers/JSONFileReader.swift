@@ -8,41 +8,52 @@
 
 import Foundation
 
-final class JSONFileReader {
+enum JSONFileReaderError: Error {
+    case jsonFileNotFound
+    case decodingError(Error)
+    case others(Error)
+}
+
+final class JSONFileReader<T: Decodable>: InitializerInjectable {
     
-    /// JSONファイル名、Decodable Typeを指定してデコードする
-    static func decode<T: Decodable>(jsonFileName: String,
-                                     type: T.Type,
-                                     handler: (Result<T, Error?>) -> ()) {
-        do {
-            guard let jsonData = try JSONFileReader.read(fileName: jsonFileName) else {
-                handler(.failure(nil))
-                return
-            }
-            let decoder = JSONDecoder()
-            let decodedObject = try decoder.decode(type, from: jsonData)
-            handler(.success(decodedObject))
-            
-        } catch let e {
-            handler(.failure(e))
-        }
+    // MARK: - Initializer
+    
+    struct Dependency {
+        let jsonFileName: String
+        let decodeType: T.Type
     }
     
-    /// JSONファイル名を指定して、データを取得する
-    ///
-    /// - Parameter fileName: e.g. "area.json"
-    /// - Returns: main bundleに対象ファイルが存在しない場合: nil, 存在する場合: Data
-    /// - Throws: urlが読み込めない場合に発生するエラー
-    private static func read(fileName: String) throws -> Data? {
-        
-        let name = fileName.deletingPathExtension
-        let type = fileName.pathExtension
-        let bundle = Bundle(for: self)
-        guard let jsonFilePath = bundle.path(forResource: name, ofType: type) else {
-            return nil
+    init(dependency: JSONFileReader.Dependency) {
+        self.jsonFileName = dependency.jsonFileName
+        self.decodeType = dependency.decodeType
+    }
+    
+    private var jsonFileName: String
+    private var decodeType: T.Type
+    
+    /// JSONファイル名、Decodable Typeを指定してデコードする
+    func decode(handler: (Result<T, JSONFileReaderError>) -> ()) {
+        do {
+            let name = jsonFileName.deletingPathExtension
+            let type = jsonFileName.pathExtension
+            let bundle = Bundle(for: JSONFileReader<T>.self)
+            guard let jsonFilePath = bundle.path(forResource: name, ofType: type) else {
+                handler(.failure(.jsonFileNotFound))
+                return
+            }
+            let jsonFileURL = URL(fileURLWithPath: jsonFilePath)
+            let jsonData = try Data(contentsOf: jsonFileURL)
+            
+            let decoder = JSONDecoder()
+            let decodedObject = try decoder.decode(decodeType, from: jsonData)
+            handler(.success(decodedObject))
+            
+        } catch let decodingError as DecodingError {
+            print("[\(#function):\(#line)]decodingError: \(decodingError)")
+            handler(.failure(.decodingError(decodingError)))
+        } catch let error {
+            print("[\(#function):\(#line)]error: \(error)")
+            handler(.failure(.others(error)))
         }
-        
-        let jsonFileURL = URL(fileURLWithPath: jsonFilePath)
-        return try Data(contentsOf: jsonFileURL)
     }
 }

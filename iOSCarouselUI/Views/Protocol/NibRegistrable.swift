@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: - TableViewNibRegistrable
-protocol TableViewNibRegistrable {
+protocol TableViewNibRegistrable where Self: UITableViewCell {
     
     static var identifier: String { get }
     
@@ -19,7 +19,7 @@ protocol TableViewNibRegistrable {
     static func register(tableView: UITableView)
 }
 
-extension TableViewNibRegistrable where Self: UITableViewCell {
+extension TableViewNibRegistrable {
     
     static var identifier: String {
         return String(describing: self)
@@ -34,7 +34,7 @@ extension TableViewNibRegistrable where Self: UITableViewCell {
 }
 
 // MARK: - CollectionViewNibRegistrable
-protocol CollectionViewNibRegistrable {
+protocol CollectionViewNibRegistrable where Self: UICollectionViewCell {
     
     static var identifier: String { get }
     
@@ -44,7 +44,7 @@ protocol CollectionViewNibRegistrable {
     static func register(collectionView: UICollectionView)
 }
 
-extension CollectionViewNibRegistrable where Self: UICollectionViewCell {
+extension CollectionViewNibRegistrable {
     
     static var identifier: String {
         return String(describing: self)

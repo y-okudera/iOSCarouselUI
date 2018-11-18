@@ -29,11 +29,13 @@
 		648C4575219F39800073204A /* RestaurantCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 648C4573219F39800073204A /* RestaurantCollectionViewCell.xib */; };
 		648C457A219F48A00073204A /* rest01.json in Resources */ = {isa = PBXBuildFile; fileRef = 648C4579219F48A00073204A /* rest01.json */; };
 		648C457C219F48F40073204A /* JSONFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648C457B219F48F40073204A /* JSONFileReader.swift */; };
-		648C457E219F4AA80073204A /* RestaurantListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648C457D219F4AA80073204A /* RestaurantListService.swift */; };
 		648C4580219F51500073204A /* String+Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648C457F219F51500073204A /* String+Path.swift */; };
 		648C4582219F53650073204A /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648C4581219F53650073204A /* UIViewController+Alert.swift */; };
 		648C4584219FEF9D0073204A /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648C4583219FEF9D0073204A /* Injectable.swift */; };
 		648C4586219FFA400073204A /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648C4585219FFA400073204A /* Result.swift */; };
+		64B5742721A136C700ECD4E7 /* RestaurantTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5742621A136C700ECD4E7 /* RestaurantTableHeaderView.swift */; };
+		64B5742921A136D100ECD4E7 /* RestaurantTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64B5742821A136D100ECD4E7 /* RestaurantTableHeaderView.xib */; };
+		64B5742B21A13B1900ECD4E7 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5742A21A13B1900ECD4E7 /* NibLoadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,11 +84,13 @@
 		648C4573219F39800073204A /* RestaurantCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantCollectionViewCell.xib; sourceTree = "<group>"; };
 		648C4579219F48A00073204A /* rest01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rest01.json; sourceTree = "<group>"; };
 		648C457B219F48F40073204A /* JSONFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFileReader.swift; sourceTree = "<group>"; };
-		648C457D219F4AA80073204A /* RestaurantListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListService.swift; sourceTree = "<group>"; };
 		648C457F219F51500073204A /* String+Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Path.swift"; sourceTree = "<group>"; };
 		648C4581219F53650073204A /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		648C4583219FEF9D0073204A /* Injectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
 		648C4585219FFA400073204A /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		64B5742621A136C700ECD4E7 /* RestaurantTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableHeaderView.swift; sourceTree = "<group>"; };
+		64B5742821A136D100ECD4E7 /* RestaurantTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableHeaderView.xib; sourceTree = "<group>"; };
+		64B5742A21A13B1900ECD4E7 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,7 +239,6 @@
 			isa = PBXGroup;
 			children = (
 				6474422E21A03610005515BB /* Restaurant.swift */,
-				648C457D219F4AA80073204A /* RestaurantListService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -296,6 +299,8 @@
 				648C456C219F36360073204A /* RestaurantListCell.xib */,
 				648C4572219F39800073204A /* RestaurantCollectionViewCell.swift */,
 				648C4573219F39800073204A /* RestaurantCollectionViewCell.xib */,
+				64B5742621A136C700ECD4E7 /* RestaurantTableHeaderView.swift */,
+				64B5742821A136D100ECD4E7 /* RestaurantTableHeaderView.xib */,
 			);
 			path = RestaurantList;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				648C4570219F36C30073204A /* NibRegistrable.swift */,
+				64B5742A21A13B1900ECD4E7 /* NibLoadable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 				648C4575219F39800073204A /* RestaurantCollectionViewCell.xib in Resources */,
 				648C457A219F48A00073204A /* rest01.json in Resources */,
 				648C452C219F1DF10073204A /* LaunchScreen.storyboard in Resources */,
+				64B5742921A136D100ECD4E7 /* RestaurantTableHeaderView.xib in Resources */,
 				6474422121A00FA6005515BB /* Localizable.strings in Resources */,
 				648C456E219F36360073204A /* RestaurantListCell.xib in Resources */,
 				648C4529219F1DF10073204A /* Assets.xcassets in Resources */,
@@ -474,13 +481,14 @@
 				648C4574219F39800073204A /* RestaurantCollectionViewCell.swift in Sources */,
 				6474422521A010AE005515BB /* String+Localized.swift in Sources */,
 				6474422F21A03610005515BB /* Restaurant.swift in Sources */,
+				64B5742721A136C700ECD4E7 /* RestaurantTableHeaderView.swift in Sources */,
 				648C4584219FEF9D0073204A /* Injectable.swift in Sources */,
 				648C4582219F53650073204A /* UIViewController+Alert.swift in Sources */,
+				64B5742B21A13B1900ECD4E7 /* NibLoadable.swift in Sources */,
 				648C457C219F48F40073204A /* JSONFileReader.swift in Sources */,
 				648C4522219F1DEE0073204A /* AppDelegate.swift in Sources */,
 				648C4571219F36C30073204A /* NibRegistrable.swift in Sources */,
 				6474422D21A0157C005515BB /* ViewControllerBuilder.swift in Sources */,
-				648C457E219F4AA80073204A /* RestaurantListService.swift in Sources */,
 				648C4580219F51500073204A /* String+Path.swift in Sources */,
 				6474422821A01300005515BB /* ViewControllerInstantiatable.swift in Sources */,
 			);

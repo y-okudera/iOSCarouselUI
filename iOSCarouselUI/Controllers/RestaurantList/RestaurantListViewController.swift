@@ -16,7 +16,7 @@ final class RestaurantListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     private let sectionHeaderHeight: CGFloat = 44.0
-    private var service: RestaurantListService<[Restaurant]>?
+    private var jsonFileReader: JSONFileReader<[Restaurant]>!
     private var rests: [Restaurant]!
     
     // MARK: - Life cycle
@@ -28,12 +28,6 @@ final class RestaurantListViewController: UIViewController {
     
     private func setup() {
         RestaurantListCell.register(tableView: tableView)
-        
-        let dependency = RestaurantListService.Dependency(
-            jsonFileName: "rest01.json",
-            decodeType: [Restaurant].self
-        )
-        service = RestaurantListService(dependency: dependency)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,15 +36,15 @@ final class RestaurantListViewController: UIViewController {
     }
     
     private func readRestaurantData() {
-        service?.readRestaurantData { result in
+        jsonFileReader.decode { result in
             
             switch result {
             case .success(let restaurantsData):
                 self.rests = restaurantsData
                 tableView.reloadData()
                 
-            case .failure(let e):
-                print(e)
+            case .failure(let error):
+                print(error)
                 let errorMSG = "restaurants_info_read_failure".localized()
                 showAlert(title: "error".localized(), message: errorMSG)
             }
@@ -93,27 +87,10 @@ extension RestaurantListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-        let headerViewFrame = CGRect(
-            x: 0,
-            y: 0,
-            width: tableView.frame.width,
-            height: sectionHeaderHeight
+        let headerView = RestaurantTableHeaderView(
+            frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: sectionHeaderHeight)
         )
-        let headerView = UIView(frame: headerViewFrame)
-        headerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
-        let titleLabelFrame = CGRect(
-            x: 0,
-            y: headerViewFrame.midY / 2,
-            width: headerViewFrame.width,
-            height: headerViewFrame.height / 2
-        )
-        let titleLabel = UILabel(frame: titleLabelFrame)
-        titleLabel.font = .boldSystemFont(ofSize: UIFont.labelFontSize)
-        titleLabel.text = rests[section].title
-        
-        headerView.addSubview(titleLabel)
+        headerView.titleLabel.text = rests[section].title
         return headerView
     }
 }
@@ -168,12 +145,12 @@ extension RestaurantListViewController: ViewControllerInstantiatable {}
 extension RestaurantListViewController: MethodInjectable {
     
     struct Dependency {
-        let service: RestaurantListService<[Restaurant]>?
+        let jsonFileReader: JSONFileReader<[Restaurant]>
         let rests: [Restaurant]
     }
     
     func inject(dependency: RestaurantListViewController.Dependency) {
-        self.service = dependency.service
+        self.jsonFileReader = dependency.jsonFileReader
         self.rests = dependency.rests
     }
 }
