@@ -124,6 +124,7 @@ extension RestaurantListViewController: UITableViewDelegate {
         let tag = restaurantCell.collectionView.tag
         
         guard let horizontalOffsetNum = offsets["\(tag)"] else {
+            restaurantCell.collectionView.contentOffset = .zero
             return
         }
         let horizontalOffset = CGFloat(truncating: horizontalOffsetNum)
