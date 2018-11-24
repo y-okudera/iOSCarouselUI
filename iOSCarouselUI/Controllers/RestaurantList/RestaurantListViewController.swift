@@ -54,6 +54,27 @@ final class RestaurantListViewController: UIViewController {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+extension RestaurantListViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard let tableView = scrollView as? UITableView else {
+            return
+        }
+        
+        let visibleRestaurantCells = tableView.visibleCells.map {
+            $0 as! RestaurantListCell
+        }
+        
+        for visibleCell in visibleRestaurantCells {
+            let horizontalOffset = visibleCell.collectionView.contentOffset.x
+            let horizontalOffsetNum = NSNumber(value: Float(horizontalOffset))
+            let tag = visibleCell.collectionView.tag
+            offsetsDic["\(tag)"] = horizontalOffsetNum
+        }
+    }
+}
+
 // MARK: - UITableViewDataSource
 extension RestaurantListViewController: UITableViewDataSource {
     
@@ -108,17 +129,6 @@ extension RestaurantListViewController: UITableViewDelegate {
         }
         let horizontalOffset = CGFloat(truncating: horizontalOffsetNum)
         restaurantCell.collectionView.contentOffset = CGPoint(x: horizontalOffset, y: 0)
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   didEndDisplaying cell: UITableViewCell,
-                   forRowAt indexPath: IndexPath) {
-        
-        let restaurantCell = cell as! RestaurantListCell
-        let horizontalOffset = restaurantCell.collectionView.contentOffset.x
-        let horizontalOffsetNum = NSNumber(value: Float(horizontalOffset))
-        let tag = restaurantCell.collectionView.tag
-        offsetsDic["\(tag)"] = horizontalOffsetNum
     }
 }
 
