@@ -22,38 +22,33 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MqB-xe-Pvl">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="242"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aII-aX-NZY">
-                                <rect key="frame" x="0.0" y="0.0" width="200" height="242"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dt5-HR-2Qx">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBo-gP-UrV">
-                                        <rect key="frame" x="0.0" y="200" width="200" height="42"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="q0i-Ph-gfY"/>
-                                        </constraints>
-                                        <string key="text">Label
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dt5-HR-2Qx">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="193.5"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBo-gP-UrV">
+                                <rect key="frame" x="0.0" y="193.5" width="200" height="48.5"/>
+                                <string key="text">Label
 Label</string>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="aII-aX-NZY" secondAttribute="bottom" id="Qn1-3c-L3D"/>
-                            <constraint firstAttribute="trailing" secondItem="aII-aX-NZY" secondAttribute="trailing" id="grY-0H-yPN"/>
-                            <constraint firstItem="aII-aX-NZY" firstAttribute="leading" secondItem="MqB-xe-Pvl" secondAttribute="leading" id="kC9-Mp-hch"/>
-                            <constraint firstItem="aII-aX-NZY" firstAttribute="top" secondItem="MqB-xe-Pvl" secondAttribute="top" id="m4h-lI-vlW"/>
+                            <constraint firstItem="JBo-gP-UrV" firstAttribute="leading" secondItem="MqB-xe-Pvl" secondAttribute="leading" id="BGE-ae-2iN"/>
+                            <constraint firstItem="dt5-HR-2Qx" firstAttribute="top" secondItem="MqB-xe-Pvl" secondAttribute="top" id="DZu-6z-iU5"/>
+                            <constraint firstAttribute="trailing" secondItem="JBo-gP-UrV" secondAttribute="trailing" id="Hkk-ld-ISp"/>
+                            <constraint firstItem="JBo-gP-UrV" firstAttribute="top" secondItem="dt5-HR-2Qx" secondAttribute="bottom" id="IcQ-Bm-mmL"/>
+                            <constraint firstAttribute="trailing" secondItem="dt5-HR-2Qx" secondAttribute="trailing" id="ZjE-s8-I4H"/>
+                            <constraint firstItem="dt5-HR-2Qx" firstAttribute="leading" secondItem="MqB-xe-Pvl" secondAttribute="leading" id="ewh-Di-YVv"/>
+                            <constraint firstAttribute="bottom" secondItem="JBo-gP-UrV" secondAttribute="bottom" id="zQC-hM-Tnv"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -61,6 +56,7 @@ Label</string>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="MqB-xe-Pvl" secondAttribute="trailing" id="AxD-oL-fWc"/>
                 <constraint firstAttribute="bottom" secondItem="MqB-xe-Pvl" secondAttribute="bottom" id="Hqi-gl-Bw3"/>
+                <constraint firstItem="dt5-HR-2Qx" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.8" id="ORX-hA-vZC"/>
                 <constraint firstItem="MqB-xe-Pvl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="pQm-aG-yxu"/>
                 <constraint firstItem="MqB-xe-Pvl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yTD-0b-DjV"/>
             </constraints>
