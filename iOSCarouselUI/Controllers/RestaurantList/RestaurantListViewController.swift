@@ -19,6 +19,8 @@ final class RestaurantListViewController: UIViewController {
     private var jsonFileReader: JSONFileReader<[Restaurant]>!
     private var rests: [Restaurant]!
     
+    private var offsetsDic = [String: NSNumber]()
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
@@ -92,6 +94,31 @@ extension RestaurantListViewController: UITableViewDelegate {
         )
         headerView.titleLabel.text = rests[section].title
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   willDisplay cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        
+        let restaurantCell = cell as! RestaurantListCell
+        let tag = restaurantCell.collectionView.tag
+        
+        guard let horizontalOffsetNum = offsetsDic["\(tag)"] else {
+            return
+        }
+        let horizontalOffset = CGFloat(truncating: horizontalOffsetNum)
+        restaurantCell.collectionView.contentOffset = CGPoint(x: horizontalOffset, y: 0)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   didEndDisplaying cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        
+        let restaurantCell = cell as! RestaurantListCell
+        let horizontalOffset = restaurantCell.collectionView.contentOffset.x
+        let horizontalOffsetNum = NSNumber(value: Float(horizontalOffset))
+        let tag = restaurantCell.collectionView.tag
+        offsetsDic["\(tag)"] = horizontalOffsetNum
     }
 }
 
