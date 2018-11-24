@@ -18,8 +18,7 @@ final class RestaurantListViewController: UIViewController {
     private let sectionHeaderHeight: CGFloat = 44.0
     private var jsonFileReader: JSONFileReader<[Restaurant]>!
     private var rests: [Restaurant]!
-    
-    private var offsetsDic = [String: NSNumber]()
+    private var offsets: [String: NSNumber]!
     
     // MARK: - Life cycle
     
@@ -70,7 +69,7 @@ extension RestaurantListViewController: UIScrollViewDelegate {
             let horizontalOffset = visibleCell.collectionView.contentOffset.x
             let horizontalOffsetNum = NSNumber(value: Float(horizontalOffset))
             let tag = visibleCell.collectionView.tag
-            offsetsDic["\(tag)"] = horizontalOffsetNum
+            offsets["\(tag)"] = horizontalOffsetNum
         }
     }
 }
@@ -124,7 +123,7 @@ extension RestaurantListViewController: UITableViewDelegate {
         let restaurantCell = cell as! RestaurantListCell
         let tag = restaurantCell.collectionView.tag
         
-        guard let horizontalOffsetNum = offsetsDic["\(tag)"] else {
+        guard let horizontalOffsetNum = offsets["\(tag)"] else {
             return
         }
         let horizontalOffset = CGFloat(truncating: horizontalOffsetNum)
@@ -184,10 +183,12 @@ extension RestaurantListViewController: MethodInjectable {
     struct Dependency {
         let jsonFileReader: JSONFileReader<[Restaurant]>
         let rests: [Restaurant]
+        let offsets: [String: NSNumber]
     }
     
     func inject(dependency: RestaurantListViewController.Dependency) {
         self.jsonFileReader = dependency.jsonFileReader
         self.rests = dependency.rests
+        self.offsets = dependency.offsets
     }
 }

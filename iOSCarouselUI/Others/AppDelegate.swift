@@ -35,7 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return ViewControllerBuilder<RestaurantListViewController>.build(
             dependency: RestaurantListViewController.Dependency(
                 jsonFileReader: jsonFileReader,
-                rests: [Restaurant]()
+                rests: [Restaurant](),
+                offsets: [String: NSNumber]()
             )
         )
     }
