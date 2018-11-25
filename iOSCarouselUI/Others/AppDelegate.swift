@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dependency: RestaurantListViewController.Dependency(
                 jsonFileReader: jsonFileReader,
                 rests: [Restaurant](),
-                offsets: [String: NSNumber]()
+                offsets: [String: CGFloat]()
             )
         )
     }
