@@ -20,7 +20,13 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
-        imageView.isHidden = false
+    }
+    
+    func setViewData(name: String, imageURLString: String) {
+        nameLabel.text = name
+        if let url = URL(string: imageURLString) {
+            imageView.setImageByNuke(with: url)
+        }
     }
 }
 

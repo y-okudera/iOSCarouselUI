@@ -11,8 +11,6 @@ import UIKit
 // MARK: - TableViewNibRegistrable
 protocol TableViewNibRegistrable where Self: UITableViewCell {
     
-    static var identifier: String { get }
-    
     /// TableViewにNibを登録する
     ///
     /// - Parameter tableView: 登録先のTableView
@@ -21,22 +19,14 @@ protocol TableViewNibRegistrable where Self: UITableViewCell {
 
 extension TableViewNibRegistrable {
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     static func register(tableView: UITableView) {
-        tableView.register(
-            UINib(nibName: identifier, bundle: Bundle(for: self)),
-            forCellReuseIdentifier: identifier
-        )
+        let nib = UINib(nibName: identifier, bundle: Bundle(for: self))
+        tableView.register(nib, forCellReuseIdentifier: identifier)
     }
 }
 
 // MARK: - CollectionViewNibRegistrable
 protocol CollectionViewNibRegistrable where Self: UICollectionViewCell {
-    
-    static var identifier: String { get }
     
     /// CollectionViewにNibを登録する
     ///
@@ -46,14 +36,8 @@ protocol CollectionViewNibRegistrable where Self: UICollectionViewCell {
 
 extension CollectionViewNibRegistrable {
     
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
     static func register(collectionView: UICollectionView) {
-        collectionView.register(
-            UINib(nibName: identifier, bundle: Bundle(for: self)),
-            forCellWithReuseIdentifier: identifier
-        )
+        let nib = UINib(nibName: identifier, bundle: Bundle(for: self))
+        collectionView.register(nib, forCellWithReuseIdentifier: identifier)
     }
 }

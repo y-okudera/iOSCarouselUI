@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Nuke
 
 /// 飲食店一覧画面
 final class RestaurantListViewController: UIViewController {
@@ -84,13 +83,8 @@ extension RestaurantListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: RestaurantListCell.identifier,
-            for: indexPath) as! RestaurantListCell
-        
-        cell.collectionView.dataSource = self
-        cell.collectionView.delegate = self
-        cell.collectionView.tag = indexPath.section
+        let cell: RestaurantListCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.setViewData(delegator: self, tag: indexPath.section)
         return cell
     }
 }
@@ -140,22 +134,11 @@ extension RestaurantListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: RestaurantCollectionViewCell.identifier,
-            for: indexPath) as! RestaurantCollectionViewCell
-        
-        cell.nameLabel.text = rests[collectionView.tag].shops[indexPath.row].name
-        
-        cell.imageView.image = nil
-        cell.imageView.isHidden = false
-        if let url = URL(string: rests[collectionView.tag].shops[indexPath.row].shop_image1) {
-            Nuke.loadImage(with: url, into: cell.imageView) { _, error in
-                if let error = error {
-                    print(error)
-                    cell.imageView.isHidden = true
-                }
-            }
-        }
+        let cell: RestaurantCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        cell.setViewData(
+            name: rests[collectionView.tag].shops[indexPath.row].name,
+            imageURLString: rests[collectionView.tag].shops[indexPath.row].shop_image1
+        )
         return cell
     }
 }

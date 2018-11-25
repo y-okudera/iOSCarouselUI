@@ -9,6 +9,8 @@
 import UIKit
 
 protocol NibLoadable where Self: UIView {
+    
+    /// Nibを読み込み、subviewに追加する
     func loadNib()
 }
 

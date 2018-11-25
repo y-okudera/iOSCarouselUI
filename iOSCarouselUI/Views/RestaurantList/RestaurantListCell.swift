@@ -15,7 +15,14 @@ final class RestaurantListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         RestaurantCollectionViewCell.register(collectionView: collectionView)
-    }    
+    }
+    
+    func setViewData(delegator: UICollectionViewDataSource & UICollectionViewDelegate, tag: Int) {
+        collectionView.dataSource = delegator
+        collectionView.delegate = delegator
+        collectionView.tag = tag
+        collectionView.reloadData()
+    }
 }
 
 extension RestaurantListCell: TableViewNibRegistrable {}
